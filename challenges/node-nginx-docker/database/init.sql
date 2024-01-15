@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS mydb;
+USE mydb;
+
+CREATE TABLE IF NOT EXISTS people (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE USER 'fullcycle'@'%' IDENTIFIED WITH mysql_native_password BY '12345qwerty';
+GRANT ALL PRIVILEGES ON *.* TO 'fullcycle'@'%';
+FLUSH PRIVILEGES;
