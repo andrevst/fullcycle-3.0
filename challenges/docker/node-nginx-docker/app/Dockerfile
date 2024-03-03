@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM --platform=arm64 node:20-alpine as builder
+FROM --platform=x86_64 node:20-alpine as builder
 
 WORKDIR /app
 
