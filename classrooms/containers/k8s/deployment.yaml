@@ -16,4 +16,4 @@ spec:
     spec:
       containers: 
       - name: goserver
-        image: andrevst/hello-go:0.2
+        image: andrevst/hello-go:0.3
