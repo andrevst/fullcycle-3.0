@@ -6,7 +6,8 @@ spec:
   selector:
     app: goserver
   # type: ClusterIP
-  type: NodePort
+  # type: NodePort
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80 # This is the port the service is listening on
