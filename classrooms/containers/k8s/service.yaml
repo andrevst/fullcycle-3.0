@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: goserver
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 80 # This is the port the service is listening on
