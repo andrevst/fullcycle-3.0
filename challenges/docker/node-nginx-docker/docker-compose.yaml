@@ -2,11 +2,14 @@ version: '3'
 
 services:
   node:
-    build: ./app/
+    platform: linux/arm64   
+    build: 
+      context: ./app/
     ports:
       - "3000:3000"
     depends_on:
       - mysql
+    command: ["./wait-for", "mysql:3306", "--", "node", "app.js"]
     environment:
       MYSQL_USER: fullcycle
       MYSQL_PASSWORD: 12345qwerty
