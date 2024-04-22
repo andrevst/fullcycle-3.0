@@ -25,14 +25,18 @@ spec:
           failureThreshold: 1
           timeoutSeconds: 1
           successThreshold: 1
-          initialDelaySeconds: 15
         readinessProbe:
           httpGet:
             path: /healthz
             port: 8000
           periodSeconds: 3
           failureThreshold: 1
-          initialDelaySeconds: 10
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          periodSeconds: 3
+          failureThreshold: 30
         envFrom:
           - configMapRef:
               name: goserver-env
