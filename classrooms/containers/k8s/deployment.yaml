@@ -17,6 +17,13 @@ spec:
       containers: 
       - name: goserver
         image: andrevst/hello-go:0.7.3
+        resources:
+          requests:
+            cpu: 100m # 1vCPU = 1000milicores
+            memory: 20Mi
+          limits:
+            cpu: 500m
+            memory: 100Mi
         livenessProbe:
           httpGet:
             path: /healthz
