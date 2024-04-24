@@ -16,7 +16,7 @@ spec:
     spec:
       containers: 
       - name: goserver
-        image: andrevst/hello-go:0.7.3
+        image: andrevst/hello-go:0.8
         resources:
           requests:
             cpu: 100m # 1vCPU = 1000milicores
