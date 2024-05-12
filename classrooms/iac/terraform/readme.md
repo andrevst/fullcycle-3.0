@@ -26,3 +26,4 @@ terraform init
 
 [terraform local provider](https://registry.terraform.io/providers/hashicorp/local/latest)
 [terraform aws provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+[ip calculator](https://jodies.de/ipcalc)
