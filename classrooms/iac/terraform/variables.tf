@@ -1,4 +1,7 @@
-variable "project" {    
-    description = "Project name"
-    default = "fullcycle-3.0"
+variable "project" {
+  description = "Project name"
+}
+
+variable "subnet_count" {
+  description = "Number of subnets"
 }

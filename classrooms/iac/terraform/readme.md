@@ -20,6 +20,15 @@ Below is the terraform cli commands used.
 ```shell
 # Start terraform
 terraform init
+
+# Validate code
+terraform validate
+
+# Verify changes
+terraform plan
+
+# Deploy changes
+terraform apply -auto-approve
 ```
 
 ## References
