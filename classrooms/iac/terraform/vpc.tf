@@ -40,3 +40,10 @@ resource "aws_route_table" "eks_route_table" {
     project = var.project
   }
 }
+
+resource "aws_route_table_association" "subnet_association" {
+  count          = var.subnet_count
+  subnet_id      = aws_subnet.eks_subnets[count.index].id
+  route_table_id = aws_route_table.eks_route_table.id
+  
+}
