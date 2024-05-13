@@ -9,3 +9,8 @@ variable "subnet_count" {
 variable "cluster_name" {
   description = "Name of the EKS cluster"
 }
+
+variable "retention_days" {
+  description = "Cloudwatch log retention in days"
+  default     = 7
+}
