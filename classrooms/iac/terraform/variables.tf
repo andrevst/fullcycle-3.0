@@ -5,3 +5,7 @@ variable "project" {
 variable "subnet_count" {
   description = "Number of subnets"
 }
+
+variable "cluster_name" {
+  description = "Name of the EKS cluster"
+}
