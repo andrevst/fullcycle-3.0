@@ -1,7 +1,14 @@
-# Terraform gitignore
+# Terraform
 
 .terraform
 *.tfstate*
 
 # Environment
 .envrc
+
+# Kubernetes
+*kubeconfig*
+
+# Secrets
+*.key
+*.pem

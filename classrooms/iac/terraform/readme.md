@@ -29,7 +29,16 @@ terraform plan
 
 # Deploy changes
 terraform apply -auto-approve
+
+# Destroy all resources
+terraform destroy -auto-approve
 ```
+
+### Working with k8s
+
+We generate the [kubeconfig file with our terraform code](output.tf), AWS has another security layer on EKS to validate if our IAM user is allowed to access the cluster. To use it we need to install AWS IAM Authenticator. I used the brew formula `brew install aws-iam-authenticator`
+
+Also, I changed my `$KUBECONFIG` to use the generated file `export=KUBECONFIG=./kubeconfig.yaml`, this command is added to the .envrc file, check [.envrc.example](.envrc.example)
 
 ## References
 

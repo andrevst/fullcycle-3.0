@@ -5,3 +5,7 @@ terraform {
     local = ">=2.5.1"
   }
 }
+
+provider "aws" {
+  region = "us-east-1"
+}
