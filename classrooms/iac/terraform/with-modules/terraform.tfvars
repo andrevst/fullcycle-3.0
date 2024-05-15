@@ -1,0 +1,9 @@
+project        = "fullcycle-3.0"
+subnet_count   = 2
+cluster_name   = "clusterfc"
+retention_days = 30
+desired_size   = 2
+max_size       = 3
+min_size       = 1
+instance_type  = "t3.micro"
+capacity_type  = "ON_DEMAND"
