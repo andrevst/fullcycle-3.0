@@ -1,0 +1,34 @@
+metricbeat.modules:
+- module: docker
+  metricsets:
+    - container
+    - cpu
+    - diskio
+    - event
+    - healthcheck
+    - image
+    - info
+    - memory
+    - network
+  enabled: true
+  period: 10s
+  hosts: ["unix:///var/run/docker.sock"]
+
+- module: elasticsearch
+  metricsets:
+    - node
+    - index
+    - node_stats
+    - cluster_stats
+  enabled: true
+  period: 10s
+  hosts: ["elasticsearch:9200"]
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+
+setup.template.name: "metricbeat"
+setup.template.pattern: "metricbeat-*"
+setup.dashboards.enabled: true
+setup.kibana:
+  host: "kibana:5601"
