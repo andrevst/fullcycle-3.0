@@ -43,6 +43,18 @@ services:
     networks:
       - observability
 
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:7.14.0
+    container_name: heartbeat
+    user: root
+    volumes:
+      - ./beats/heartbeat/heartbeat.yaml:/usr/share/heartbeat/heartbeat.yml
+    environment:
+      - setup.kibana.host=kibana:5601
+    restart: on-failure
+    networks:
+      - observability
+
 networks:
   observability:
       driver: bridge
