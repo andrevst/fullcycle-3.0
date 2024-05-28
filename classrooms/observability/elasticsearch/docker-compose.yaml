@@ -54,6 +54,15 @@ services:
     restart: on-failure
     networks:
       - observability
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.14.0
+    container_name: apm-server
+    volumes:
+      - ./apm/apm-server.yaml:/usr/share/apm-server/apm-server.yml
+    ports:
+      - 8200:8200
+    networks:
+      - observability
 
 networks:
   observability:
