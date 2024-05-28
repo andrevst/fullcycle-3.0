@@ -42,13 +42,15 @@ services:
       networks: 
         - elasticsearch_observability
     
-    # nginx:
-    #   build: ../nginx
-    #   container_name: nginx
-    #   ports:
-    #     - "8280:80"
-    #   networks: 
-    #     - elasticsearch_observability
+    nginx:
+      build: ../nginx
+      container_name: nginx
+      depends_on:
+        - app
+      ports:
+        - "8080:80"
+      networks: 
+        - elasticsearch_observability
 
 networks:
   elasticsearch_observability:

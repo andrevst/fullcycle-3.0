@@ -62,7 +62,7 @@ ELASTIC_APM = {
   'SERVICE_NAME': 'codeprogress',
 
   # Set custom APM Server URL (default: http://localhost:8200)
-  'SERVER_URL': 'http://apm:8200',
+  'SERVER_URL': 'http://localhost:8200',
   'DEBUG': True,
   'ENVIRONMENT': 'production',
 }
