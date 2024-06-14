@@ -35,6 +35,13 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Technologies
+
+- [Next.js]
+- [TailwindCSS]
+- [Jest]
+- [Heroicons](https://heroicons.com/)
+
 ## Testing
 
 - We use [Jest](https://jestjs.io/docs/getting-started) for unit test and install it according to [next.js documentation](https://nextjs.org/docs/app/building-your-application/testing/jest)
