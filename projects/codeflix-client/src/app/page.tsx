@@ -1,16 +1,79 @@
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import Header from './components/Header';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { PlayIcon } from '@heroicons/react/24/solid';
 
-const inter = Inter({ subsets: ['latin'] });
+type Props = {
+
+  sectionTitle: string;
+
+};
+
+type MovieCardProps = {
+
+  index: number;
+
+};
+
+const MovieCard = ({ index }: MovieCardProps) => (
+
+  <div className='group relative h-28 min-w-[200px] cursor-pointer rounded bg-gradient-to-t from-transparent to-black transition-transform duration-200 ease-out hover:opacity-100 md:h-36 md:min-w-[260px] md:hover:scale-110'>
+
+    <Image
+
+      src={`/item_${index}.png`}
+
+      fill={true}
+
+      alt='MAID'
+
+      className='rounded'
+
+    />
+
+  </div>
+
+);
+
+
+
+
+export const MovieRow = ({ sectionTitle }: Props) => (
+
+  <div className='flex-col space-y-4 pl-2'>
+
+    <div className='flex'>
+
+      <h2 className='-ml-2 inline-flex items-center text-2xl font-bold'>
+
+        {sectionTitle}
+
+      </h2>
+
+    </div>
+
+
+
+
+    <div className='-ml-8 flex space-x-4 overflow-x-scroll p-6 scrollbar-hide'>
+
+      {[1, 2, 3, 4, 5, 6, 2].map((index) => (
+
+        <MovieCard key={index} index={index} />
+
+      ))}
+
+    </div>
+
+  </div>
+
+);
 
 export default function Home() {
   return (
-    <div className='relative h-screen overflow-hidden bg-gradient-to-b lg:h-[140vh]'>
+    <div className='relative bg-gradient-to-b pb-8'>
       <Header />
-      <main className='relative pb-24 pl-4 lg:space-y-24 lg:pl-16'>
+      <main className='relative h-screen mb-48 pl-4 lg:pl-16'>
         <div className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12'>
           <div className='absolute left-0 top-0 -z-10 flex h-[95vh] w-screen flex-col bg-black'>
             <Image
@@ -41,6 +104,9 @@ export default function Home() {
             More Info
           </button>
         </div>
+        <MovieRow sectionTitle='Popular' />
+        <MovieRow sectionTitle='Trending' />
+        <MovieRow sectionTitle='Top Rated' />
       </main>
     </div>
   );
