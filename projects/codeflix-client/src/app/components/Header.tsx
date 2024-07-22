@@ -4,7 +4,7 @@ import React from 'react';
 import { useScroll } from '../hooks/useScroll';
 import { UserProfile } from './UserProfile';
 import { Logo } from './Logo';
-import { NavLinks } from './Navbar'
+import { NavLinks } from './Navbar'
 
 
 
