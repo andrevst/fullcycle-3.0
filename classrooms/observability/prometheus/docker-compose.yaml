@@ -34,3 +34,11 @@ services:
       - ./grafana:/var/lib/grafana
     depends_on:
       - prometheus
+
+  app:
+    build: ./app
+    container_name: app
+    volumes:
+    - .:/go/src
+    ports:
+    - 8181:8181
