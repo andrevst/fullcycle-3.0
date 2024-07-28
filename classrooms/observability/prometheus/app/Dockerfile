@@ -1,4 +1,4 @@
-FROM golang:1.19rc1-stretch
+FROM golang:latest
 
 WORKDIR /go/src
 ENV PATH="/go/bin:${PATH}"
