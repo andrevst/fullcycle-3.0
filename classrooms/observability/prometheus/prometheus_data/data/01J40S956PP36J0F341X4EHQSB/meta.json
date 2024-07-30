@@ -1,0 +1,17 @@
+{
+	"ulid": "01J40S956PP36J0F341X4EHQSB",
+	"minTime": 1722297600026,
+	"maxTime": 1722304800000,
+	"stats": {
+		"numSamples": 4196620,
+		"numSeries": 3464,
+		"numChunks": 34501
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01J40S956PP36J0F341X4EHQSB"
+		]
+	},
+	"version": 1
+}

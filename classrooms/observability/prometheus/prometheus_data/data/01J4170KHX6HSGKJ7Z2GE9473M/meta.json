@@ -1,0 +1,17 @@
+{
+	"ulid": "01J4170KHX6HSGKJ7Z2GE9473M",
+	"minTime": 1722312000017,
+	"maxTime": 1722319200000,
+	"stats": {
+		"numSamples": 4198685,
+		"numSeries": 3464,
+		"numChunks": 34696
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01J4170KHX6HSGKJ7Z2GE9473M"
+		]
+	},
+	"version": 1
+}
