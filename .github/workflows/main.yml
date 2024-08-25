@@ -1,0 +1,100 @@
+name: Build and Push App
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Select which package to deploy'
+        required: true
+        type: choice
+        options:
+          - subscriber
+          - admin
+      environment:
+        description: 'Environment'
+        required: true
+        type: choice
+        options:
+          - production
+          - nonproduction
+  push:
+    branches:
+      - main
+
+env:
+  DEFAULT_REGION: 'us-west-2'
+  NONPROD_REGISTRY: 574856842949.dkr.ecr.us-west-2.amazonaws.com
+  PROD_REGISTRY: 903571743879.dkr.ecr.us-west-2.amazonaws.com
+  REPOSITORY: ${{ github.event.inputs.repository || 'default-repo' }}
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set environment variables
+        id: set-env
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.environment }}" == "production" ]]; then
+            echo "REGISTRY=${{ env.PROD_REGISTRY }}" >> $GITHUB_ENV
+          else
+            echo "REGISTRY=${{ env.NONPROD_REGISTRY }}" >> $GITHUB_ENV
+          fi
+
+      - name: Build Docker image
+        id: build-image
+        env:
+          REPOSITORY: ${{ github.event.inputs.repository || 'default-repo' }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE_URI_SHA=$REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker build -t $IMAGE_URI_SHA -f challenges/docker/go-docker/Dockerfile.${{ github.event.inputs.repository }} .
+          docker save $IMAGE_URI_SHA -o image.tar
+          echo "Built and saved image: $IMAGE_URI_SHA"
+
+      - name: Upload Docker image as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: image.tar
+
+  push:
+    name: Push Docker Image
+    runs-on: ubuntu-latest
+    needs: build
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+
+    steps:
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: docker-image
+          path: .
+
+      - name: Set AWS keys
+        id: set-keys
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.environment }}" == "production" ]]; then
+            echo "REGISTRY=${{ env.PROD_REGISTRY }}" >> $GITHUB_ENV
+          else
+            echo "REGISTRY=${{ env.NONPROD_REGISTRY }}" >> $GITHUB_ENV
+          fi
+
+
+      - name: Load Docker image and retag
+        run: |
+          docker load -i image.tar
+          echo "Loaded and tagged image: $(docker images -q)"
+
+      - name: Push Docker image to ECR
+        run: docker image ls
