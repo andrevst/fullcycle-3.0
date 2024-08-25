@@ -7,6 +7,7 @@ on:
         description: 'Select which package to deploy'
         required: true
         type: choice
+        default: subscriber
         options:
           - subscriber
           - admin
@@ -65,7 +66,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: docker-image
-          path: image.tar
+          path: challenges/docker/go-docker/image.tar
 
   push:
     name: Push Docker Image
