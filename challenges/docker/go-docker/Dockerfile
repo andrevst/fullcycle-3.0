@@ -12,6 +12,4 @@ FROM scratch AS runner
 
 COPY --from=builder /app/fullcycle /
 
-RUN chmod +x /fullcycle
-
 ENTRYPOINT [ "/fullcycle" ]
