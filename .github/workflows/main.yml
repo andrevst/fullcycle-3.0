@@ -23,8 +23,8 @@ on:
 
 env:
   DEFAULT_REGION: 'us-west-2'
-  NONPROD_REGISTRY: 574856842949.dkr.ecr.us-west-2.amazonaws.com
-  PROD_REGISTRY: 903571743879.dkr.ecr.us-west-2.amazonaws.com
+  NONPROD_REGISTRY: nonprod.dkr.ecr.us-west-2.amazonaws.com
+  PROD_REGISTRY: prod.dkr.ecr.us-west-2.amazonaws.com
   REPOSITORY: ${{ github.event.inputs.repository || 'default-repo' }}
   IMAGE_TAG: ${{ github.sha }}
 
@@ -56,7 +56,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           IMAGE_URI_SHA=$REGISTRY/$REPOSITORY:$IMAGE_TAG
-          docker build -t $IMAGE_URI_SHA -f challenges/docker/go-docker/Dockerfile.${{ github.event.inputs.repository }} .
+          docker build -t $IMAGE_URI_SHA -f challenges/docker/go-docker/Dockerfile .
           docker save $IMAGE_URI_SHA -o image.tar
           echo "Built and saved image: $IMAGE_URI_SHA"
 
